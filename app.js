@@ -1,8 +1,8 @@
 // [LOAD PACKAGES]
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 
 // [CONFIGURE APP TO USE bodyParser]
@@ -11,15 +11,15 @@ app.use(bodyParser.json());
 
 
 // [CONFIGURE SERVER PORT]
-var port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 
 // [ CONFIGURE mongoose ]
 
 // CONNECT TO MONGODB SERVER
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error);
-db.once('open', function(){
+db.once('open', () => {
     // CONNECTED TO MONGODB SERVER
     console.log('Connected to mongod server');
 });
@@ -32,12 +32,12 @@ mongoose.connect('mongodb://localhost/mongodb_tutorial', { useNewUrlParser: true
 
 // [CONFIGURE ROUTER]
 // var router = require('./routes') (app, Book);
-var index = require('./routes/index');
-var book = require('./routes/book-route')
+const index = require('./routes/index');
+const book = require('./routes/book-route')
 app.use('', index);
 app.use('', book);
 
 // [RUN SERVER]
-var server = app.listen(port, function(){
+const server = app.listen(port, () => {
     console.log('Express server has started on port ' + port);
 });

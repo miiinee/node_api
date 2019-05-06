@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express.Router();
+const express = require('express');
+const app = express.Router();
 
-var Book = require('../models/book');
+const Book = require('../models/book');
 
 app.get('/api/books', (req,res) => {
-    Book.find(function(err, books){
+    Book.find((err, books) => {
         if(err) return res.status(500).send({error: 'database failure'});
         
         res.json(books);

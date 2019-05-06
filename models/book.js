@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var bookSchema = new Schema({
+const bookSchema = new Schema({
     title: String,
     author: String,
     published_date: {type: Date, default: Date.now}
