@@ -3,8 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const WebpackDevServer = require('webpack-dev-server');
-const webpack = require('webpack');
+// const WebpackDevServer = require('webpack-dev-server');
+// const webpack = require('webpack');
 // const path = require('path');
 // const morgan = require('morgan'); // HTTP req. log
 
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 // [CONFIGURE SERVER PORT]
 // const port = process.env.PORT || 8080;
 const port = 3000;
-const devPort = 4000;
+// const devPort = 4000;
 
 // [ CONFIGURE mongoose ]
 // CONNECT TO MONGODB SERVER
@@ -61,17 +61,17 @@ app.use('/api', index);
 //     res.sendFile(path.resolve(__dirname, './../public/index.html'));
 // });
 
-if(process.env.NODE_ENV == 'development') {
-    console.log('Server is running on development mode');
-    const config = require('./webpack.dev.config');
-    const compiler = webpack(config);
-    const devServer = new WebpackDevServer(compiler, config.devServer);
-    devServer.listen(
-        devPort, () => {
-            console.log('webpack-dev-server is listening on port', devPort);
-        }
-    );
-}
+// if(process.env.NODE_ENV == 'development') {
+//     console.log('Server is running on development mode');
+//     const config = require('./webpack.dev.config');
+//     const compiler = webpack(config);
+//     const devServer = new WebpackDevServer(compiler, config.devServer);
+//     devServer.listen(
+//         devPort, () => {
+//             console.log('webpack-dev-server is listening on port', devPort);
+//         }
+//     );
+// }
 
 // [RUN SERVER]
 const server = app.listen(port, () => {
