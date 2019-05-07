@@ -58,13 +58,13 @@ module.exports = {
                 exclude: /node_modules/,
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react'],
+                    presets: ['env', 'react'],
                     plugins: ["react-hot-loader/babel"]
                 }
             },
             {
                 test: /\.css$/,
-                loader: 'style!css-loader'
+                loader: 'style-loader!css-loader'
             }
         ]
     },

@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-const path = require('path');
-const morgan = require('morgan'); // HTTP req. log
+// const path = require('path');
+// const morgan = require('morgan'); // HTTP req. log
 
 const app = express();
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,8 +21,6 @@ app.use(bodyParser.json());
 // const port = process.env.PORT || 8080;
 const port = 3000;
 const devPort = 4000;
-
-app.use('/', express.static(path.join(__dirname, './../public')));
 
 // [ CONFIGURE mongoose ]
 // CONNECT TO MONGODB SERVER
@@ -58,10 +56,14 @@ app.use((err, req, res, next) => {
 const index = require('./routes');
 app.use('/api', index);
 
+/* support client-side routing */
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, './../public/index.html'));
+// });
 
 if(process.env.NODE_ENV == 'development') {
     console.log('Server is running on development mode');
-    const config = require('../webpack.dev.config');
+    const config = require('./webpack.dev.config');
     const compiler = webpack(config);
     const devServer = new WebpackDevServer(compiler, config.devServer);
     devServer.listen(
